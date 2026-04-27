@@ -4,14 +4,22 @@
   <meta charset="utf-8">
   
   
-  <title>Hexo</title>
+  <title>Spark local&amp;stand-alone配置 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="Spark Local 与 Standalone 模式配置一、实验目的掌握 Spark 的本地运行模式与独立集群模式的配置与使用方法。 二、Spark 运行模式 Local 本地模式 Standalone 独立集群模式 Yarn 模式 Mesos 模式  三、Local 模式配置与使用 无需配置集群 直接使用 spark-shell 运行 适合开发、测试  命令示例： 四、Standalone 模">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spark local&amp;stand-alone配置">
+<meta property="og:url" content="http://example.com/2025/12/25/Spark-local-stand-alone%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Spark Local 与 Standalone 模式配置一、实验目的掌握 Spark 的本地运行模式与独立集群模式的配置与使用方法。 二、Spark 运行模式 Local 本地模式 Standalone 独立集群模式 Yarn 模式 Mesos 模式  三、Local 模式配置与使用 无需配置集群 直接使用 spark-shell 运行 适合开发、测试  命令示例： 四、Standalone 模">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-12-25T03:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-27T07:01:15.414Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Spark">
+<meta property="article:tag" content="local">
+<meta property="article:tag" content="standalone">
+<meta property="article:tag" content="集群">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -69,72 +77,7 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Spark-HA-Yarn配置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/12/25/Spark-HA-Yarn%E9%85%8D%E7%BD%AE/" class="article-date">
-  <time class="dt-published" datetime="2025-12-25T06:30:00.000Z" itemprop="datePublished">2025-12-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%AE%9E%E9%AA%8C/">大数据实验</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/12/25/Spark-HA-Yarn%E9%85%8D%E7%BD%AE/">Spark HA &amp; Yarn配置</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="Spark-HA-高可用与-Yarn-模式配置"><a href="#Spark-HA-高可用与-Yarn-模式配置" class="headerlink" title="Spark HA 高可用与 Yarn 模式配置"></a>Spark HA 高可用与 Yarn 模式配置</h1><h2 id="一、实验目的"><a href="#一、实验目的" class="headerlink" title="一、实验目的"></a>一、实验目的</h2><p>实现 Spark Standalone 高可用（HA），并配置 Spark 运行在 Yarn 集群上。</p>
-<h2 id="二、Spark-HA-配置（基于-Zookeeper）"><a href="#二、Spark-HA-配置（基于-Zookeeper）" class="headerlink" title="二、Spark HA 配置（基于 Zookeeper）"></a>二、Spark HA 配置（基于 Zookeeper）</h2><h3 id="1-安装-Zookeeper"><a href="#1-安装-Zookeeper" class="headerlink" title="1. 安装 Zookeeper"></a>1. 安装 Zookeeper</h3><ul>
-<li>配置 zoo.cfg</li>
-<li>启动 Zookeeper 集群</li>
-</ul>
-<h3 id="2-修改-spark-env-sh"><a href="#2-修改-spark-env-sh" class="headerlink" title="2. 修改 spark-env.sh"></a>2. 修改 spark-env.sh</h3><h3 id="3-启动多个-Master"><a href="#3-启动多个-Master" class="headerlink" title="3. 启动多个 Master"></a>3. 启动多个 Master</h3><ul>
-<li>主 Master</li>
-<li>备用 Master</li>
-</ul>
-<h3 id="4-高可用验证"><a href="#4-高可用验证" class="headerlink" title="4. 高可用验证"></a>4. 高可用验证</h3><ul>
-<li>关闭主 Master，备用 Master 自动切换</li>
-</ul>
-<h2 id="三、Spark-On-Yarn-配置"><a href="#三、Spark-On-Yarn-配置" class="headerlink" title="三、Spark On Yarn 配置"></a>三、Spark On Yarn 配置</h2><h3 id="1-配置-Hadoop-的-yarn-site-xml"><a href="#1-配置-Hadoop-的-yarn-site-xml" class="headerlink" title="1. 配置 Hadoop 的 yarn-site.xml"></a>1. 配置 Hadoop 的 yarn-site.xml</h3><ul>
-<li>开启日志聚集</li>
-<li>配置资源大小</li>
-</ul>
-<h3 id="2-配置-Spark-环境变量"><a href="#2-配置-Spark-环境变量" class="headerlink" title="2. 配置 Spark 环境变量"></a>2. 配置 Spark 环境变量</h3><ul>
-<li>HADOOP_CONF_DIR</li>
-</ul>
-<h3 id="3-提交任务到-Yarn"><a href="#3-提交任务到-Yarn" class="headerlink" title="3. 提交任务到 Yarn"></a>3. 提交任务到 Yarn</h3><h2 id="四、实验总结"><a href="#四、实验总结" class="headerlink" title="四、实验总结"></a>四、实验总结</h2><h2 id="成功配置-Spark-HA-高可用模式，实现了-Master-单点故障自动恢复；同时完成-Spark-On-Yarn-配置，能够将-Spark-任务提交到-Yarn-集群运行。"><a href="#成功配置-Spark-HA-高可用模式，实现了-Master-单点故障自动恢复；同时完成-Spark-On-Yarn-配置，能够将-Spark-任务提交到-Yarn-集群运行。" class="headerlink" title="成功配置 Spark HA 高可用模式，实现了 Master 单点故障自动恢复；同时完成 Spark On Yarn 配置，能够将 Spark 任务提交到 Yarn 集群运行。"></a>成功配置 Spark HA 高可用模式，实现了 Master 单点故障自动恢复；同时完成 Spark On Yarn 配置，能够将 Spark 任务提交到 Yarn 集群运行。</h2>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/12/25/Spark-HA-Yarn%E9%85%8D%E7%BD%AE/" data-id="cmogv9yal0000xgg58c68c4g2" data-title="Spark HA &amp; Yarn配置" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HA/" rel="tag">HA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/" rel="tag">Spark</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Yarn/" rel="tag">Yarn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zookeeper/" rel="tag">Zookeeper</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Spark-local-stand-alone配置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-Spark-local-stand-alone配置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/12/25/Spark-local-stand-alone%E9%85%8D%E7%BD%AE/" class="article-date">
   <time class="dt-published" datetime="2025-12-25T03:00:00.000Z" itemprop="datePublished">2025-12-25</time>
@@ -151,8 +94,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/12/25/Spark-local-stand-alone%E9%85%8D%E7%BD%AE/">Spark local&amp;stand-alone配置</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      Spark local&amp;stand-alone配置
     </h1>
   
 
@@ -202,80 +145,28 @@
     </footer>
   </div>
   
-</article>
-
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-Spark基础环境配置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/12/25/Spark%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="article-date">
-  <time class="dt-published" datetime="2025-12-25T02:00:00.000Z" itemprop="datePublished">2025-12-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%AE%9E%E9%AA%8C/">大数据实验</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2025/12/25/Spark-HA-Yarn%E9%85%8D%E7%BD%AE/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
+          Spark HA &amp; Yarn配置
+        
+      </div>
+    </a>
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/12/25/Spark%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">Spark基础环境配置</a>
-    </h1>
   
+    <a href="/2025/12/25/Spark%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Spark基础环境配置</div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="Spark-基础环境配置"><a href="#Spark-基础环境配置" class="headerlink" title="Spark 基础环境配置"></a>Spark 基础环境配置</h1><h2 id="一、实验目的"><a href="#一、实验目的" class="headerlink" title="一、实验目的"></a>一、实验目的</h2><p>掌握 Spark 运行环境的基础搭建流程，理解 Spark 依赖的基础组件。</p>
-<h2 id="二、环境准备"><a href="#二、环境准备" class="headerlink" title="二、环境准备"></a>二、环境准备</h2><ol>
-<li>JDK 1.8 及以上</li>
-<li>Hadoop 环境（可选）</li>
-<li>Scala 环境</li>
-<li>Spark 安装包</li>
-</ol>
-<h2 id="三、安装步骤"><a href="#三、安装步骤" class="headerlink" title="三、安装步骤"></a>三、安装步骤</h2><h3 id="1-JDK-安装与配置"><a href="#1-JDK-安装与配置" class="headerlink" title="1. JDK 安装与配置"></a>1. JDK 安装与配置</h3><ul>
-<li>配置 JAVA_HOME</li>
-<li>配置 PATH 环境变量</li>
-<li>验证：java -version</li>
-</ul>
-<h3 id="2-Scala-安装"><a href="#2-Scala-安装" class="headerlink" title="2. Scala 安装"></a>2. Scala 安装</h3><ul>
-<li>解压并配置 SCALA_HOME</li>
-<li>验证：scala -version</li>
-</ul>
-<h3 id="3-Spark-解压与配置"><a href="#3-Spark-解压与配置" class="headerlink" title="3. Spark 解压与配置"></a>3. Spark 解压与配置</h3><ul>
-<li>解压 spark 安装包</li>
-<li>配置 SPARK_HOME</li>
-<li>修改 spark-env.sh 文件</li>
-</ul>
-<h3 id="4-启动-Spark"><a href="#4-启动-Spark" class="headerlink" title="4. 启动 Spark"></a>4. 启动 Spark</h3><ul>
-<li>执行 start-all.sh</li>
-<li>访问 Web UI：<a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a></li>
-</ul>
-<h2 id="四、实验总结"><a href="#四、实验总结" class="headerlink" title="四、实验总结"></a>四、实验总结</h2><h2 id="成功完成-Spark-基础环境搭建，能够正常启动-Spark-服务并访问管理界面。"><a href="#成功完成-Spark-基础环境搭建，能够正常启动-Spark-服务并访问管理界面。" class="headerlink" title="成功完成 Spark 基础环境搭建，能够正常启动 Spark 服务并访问管理界面。"></a>成功完成 Spark 基础环境搭建，能够正常启动 Spark 服务并访问管理界面。</h2>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/12/25/Spark%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" data-id="cmogv9yaq0004xgg503mx3x3n" data-title="Spark基础环境配置" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/" rel="tag">Hadoop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDK/" rel="tag">JDK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/" rel="tag">Spark</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" rel="tag">环境配置</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-
-  
 
 
 </section>
